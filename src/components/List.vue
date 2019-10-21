@@ -12,7 +12,7 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <td>Item Name</td>
+        <td>User Name</td>
         <td>Email</td>
         <td>Intro</td>
         <td>Course</td>
