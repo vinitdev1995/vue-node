@@ -17,6 +17,9 @@ export const UsersService = {
     return Vue.axios.put(`items/update/${id}`, body);
   },
   destroy(id) {
-    return Vue.axios.delete(`items/delete/${id}`);
+    return Vue.axios.get(`items/delete/${id}`);
+  },
+  getSpecificUser(id) {
+    return Vue.axios.get(`items/edit/${id}`)
   }
 };

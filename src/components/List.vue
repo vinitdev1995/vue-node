@@ -36,13 +36,13 @@
       </tbody>
     </table>
     <p v-if="isLoading">Loading...</p>
+    <p class="text-danger" v-if="error">{{error}}</p>
   </div>
 </template>
 
 <script>
   import { mapGetters } from "vuex"
-  import {API_URL} from "../utilities/CONST"
-  import { FETCH_USERS } from "../store/actions.type"
+  import { FETCH_USERS, DELETE_USER } from "../store/actions.type"
 
   export default {
     name: "List",
@@ -55,12 +55,10 @@
     mounted() {
       this.$store.dispatch(FETCH_USERS);
     },
-    computed: mapGetters(["usersCount", "users", "isLoading"]),
+    computed: mapGetters(["usersCount", "users", "isLoading", "error"]),
     methods: {
       deleteItem: function (id) {
-        let uri = `${API_URL}items/delete/${id}`;
-        this.users.splice(id, 1);
-        this.axios.get(uri);
+        this.$store.dispatch(DELETE_USER, id);
       }
     }
   }
