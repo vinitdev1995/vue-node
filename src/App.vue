@@ -1,19 +1,25 @@
 <template>
     <div id="app">
-        <app-header />
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <router-link class="nav-link" to='/form' >Form</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to='/list' >List</router-link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <router-view />
-        <app-footer />
     </div>
 </template>
 
 <script>
-  import Header from "./Layout/Header.vue"
-  import Footer from "./Layout/Footer.vue"
-
   export default {
-    components: {
-      "app-header": Header,
-      "app-footer": Footer,
-    }
   }
 </script>

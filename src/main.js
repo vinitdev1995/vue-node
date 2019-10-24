@@ -10,6 +10,7 @@ Vue.use(VueAxios, axios);
 import App from './App.vue'
 import Dashboard from './components/Dashboard.vue'
 import routes from './routes'
+import store from "./store"
 
 Vue.component("app-dashboard", Dashboard)
 
@@ -17,14 +18,20 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
+/*
 new Vue({
   el: '#app',
-  render: h => h(App),
-  router
+  store,
+  router,
+  render: h => h(App)
 })
 
+*/
+
 // OR
-// new Vue({
-//   render: h => h(App),
-//   router
-// }).$mount('#app')
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");

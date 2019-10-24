@@ -1,12 +1,5 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <header>
-          <h1>Edit Form</h1>
-        </header>
-      </div>
-    </div>
+  <div>
     <user-form :user="user" />
   </div>
 </template>

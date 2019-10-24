@@ -10,7 +10,7 @@ export default [
     component: Dashboard
   },
   {
-    name: 'Form',
+    name: 'Dashboard Form',
     path: '/form',
     component: Dashboard
   },
