@@ -1,6 +1,11 @@
 <template>
   <div>
-    <user-form :user="selectedUser" />
+    <div>UserName: {{userName}}</div>
+    <user-form
+        :user="selectedUser"
+        :userName="userName"
+        :resetUserName="resetUserName"
+        @updateUserName="userName = $event" />
   </div>
 </template>
 
@@ -15,6 +20,7 @@
     },
     data:  function () {
      return {
+       userName: "ABC",
        user: {
          name: "",
          email: "",
@@ -36,6 +42,10 @@
       getUser: function() {
         console.log("userId:-",  this.$data.userId)
         this.$store.dispatch(FETCH_SPECIFIC_USER, this.$data.userId)
+      },
+      resetUserName: function (params) {
+        console.log(params)
+        this.userName = params
       }
     }
   }

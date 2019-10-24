@@ -37,7 +37,7 @@
         <p v-if="errors.course" class="text-danger"><small>{{errors.course || ""}}</small></p>
       </div>
       <button class="btn btn-primary" @click="checkForm">Submit</button>
-      <button type="reset" class="btn btn-danger" >Reset</button>
+      <button type="reset" class="btn btn-danger" @click="resetUserName('789465')" >Reset</button>
     </div>
   </div>
 </template>
@@ -46,6 +46,18 @@
   import {CREATE_OR_UPDATE_USER} from "../store/actions.type"
 
   export default {
+    // props: ['user'], // Define props without data type
+    props: {  // Define props with data type
+      // user: [String, Object] // If you want to use multiple type for single field
+      /*user: {
+        type: "String",
+        default: "",
+        required: true,
+      }*/
+      userName: [String],
+      user: Object,
+      resetUserName: Function,
+    },
     data:  function () {
      return {
        name: "",
@@ -73,18 +85,18 @@
     created: function () {
       if(this.$router.history && this.$router.history.current && this.$router.history.current.params && this.$router.history.current.params.id){
         this.$data.userId = this.$router.history.current.params.id
-        this.setAttrsToState()
+        this.setPropsToState()
       }
     },
     watch: {
-      "$attrs.user": function() {
-        this.setAttrsToState()
+      "$props.user": function() {
+        this.setPropsToState()
       }
     },
     methods: {
-      setAttrsToState: function() {
-        if(this.$attrs && this.$attrs.user){
-          const user = this.$attrs.user
+      setPropsToState: function() {
+        if(this.$props && this.$props.user){
+          const user = this.$props.user
           Object.keys(user).forEach(key => {
             this.$data[key] = user[key]
           })
@@ -156,7 +168,8 @@
           return this.$data.errors = errors
         }
         this.$store.dispatch(CREATE_OR_UPDATE_USER, {id: this.$data.userId, body: user})
-        this.$router.push({name: 'List'})
+        this.$emit('updateUserName', name)
+        // this.$router.push({name: 'List'})
       }
     }
   }

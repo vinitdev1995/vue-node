@@ -14,7 +14,7 @@ export const UsersService = {
     return Vue.axios.post("items/add", body);
   },
   update(id, body) {
-    return Vue.axios.put(`items/update/${id}`, body);
+    return Vue.axios.post(`items/update/${id}`, body);
   },
   destroy(id) {
     return Vue.axios.get(`items/delete/${id}`);
